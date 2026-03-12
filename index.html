@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Twitch OBS Chat</title>
+    <link rel="stylesheet" href="/style-17d7c2dde952584e.css" integrity="sha384-AJZTKP9+N7Be1cTRqLI1kpALNw2gL9xuS9vMr4/ncGUIygAbjS75U92vNvI6VAtG"/>
+    
+<script type="module">
+import init, * as bindings from '/twitch-obs-chat-7888fa301dbd92b8.js';
+const wasm = await init({ module_or_path: '/twitch-obs-chat-7888fa301dbd92b8_bg.wasm' });
+
+
+window.wasmBindings = bindings;
+
+
+dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
+
+</script>
+  <link rel="modulepreload" href="/twitch-obs-chat-7888fa301dbd92b8.js" crossorigin="anonymous" integrity="sha384-0b+aTkrtByhiCxNvhMqLEmsufYpNQUmYzr/Wrm7UZhhvkyyLJQIHfwWCb5EF9Ycw"><link rel="preload" href="/twitch-obs-chat-7888fa301dbd92b8_bg.wasm" crossorigin="anonymous" integrity="sha384-YRJDdC65iHYkaTWRpzPfBc/brezASpjf6BJLGi903QUg7K2qx7VWmZx/nFuwWzxT" as="fetch" type="application/wasm"></head>
+  <body></body>
+</html>
