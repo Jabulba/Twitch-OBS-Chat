@@ -1,0 +1,266 @@
+:root {
+  --bg-start: #f5f1ea;
+  --bg-end: #e6f0f5;
+  --panel: #ffffff;
+  --ink: #1a1a1a;
+  --muted: #55606d;
+  --accent: #e8572a;
+  --accent-soft: rgba(232, 87, 42, 0.14);
+  --read: #4a5560;
+  --unread: #101418;
+  --border: rgba(26, 26, 26, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: "Space Grotesk", "Avenir Next", "Segoe UI", sans-serif;
+  color: var(--ink);
+  background: linear-gradient(140deg, var(--bg-start), var(--bg-end));
+}
+
+body {
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+}
+
+.app {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  width: min(980px, 96vw);
+  margin: 2vh auto;
+  background: var(--panel);
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(26, 26, 26, 0.12);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 22px;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(120deg, rgba(232, 87, 42, 0.08), transparent 60%);
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.title-line {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: 13px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.channel-input {
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  padding: 8px 14px;
+  min-width: 140px;
+  font-size: 14px;
+  outline: none;
+  background: #fffaf5;
+}
+
+button {
+  border: none;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+button.primary {
+  background: var(--accent);
+  color: white;
+}
+
+button.ghost {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.chat {
+  overflow: auto;
+  padding: 0 14px;
+  background: #fbfbfb;
+  min-height: 280px;
+}
+
+.message {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  height: 36px;
+  line-height: 28px;
+  white-space: normal;
+  overflow: hidden;
+  word-break: break-word;
+  border-radius: 8px;
+  padding: 4px 8px;
+  cursor: pointer;
+  border-bottom: 1px solid transparent;
+}
+
+.message.read {
+  color: var(--read);
+  background: transparent;
+}
+
+.message.unread {
+  color: var(--unread);
+  background: var(--accent-soft);
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.message.next-unread {
+  background: var(--accent);
+  color: white;
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(232, 87, 42, 0.3);
+  z-index: 10;
+  position: relative;
+}
+
+.message.next-unread .user {
+  color: white !important;
+}
+
+.message.next-unread .text {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.user {
+  color: var(--accent);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.text {
+  font-size: 13px;
+}
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 12px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--muted);
+  transition: background-color 0.3s ease;
+}
+
+.footer.flashing {
+  animation: flash-red var(--flash-duration, 2s) infinite ease-in-out;
+}
+
+@keyframes flash-red {
+  0%, 100% { background-color: transparent; }
+  50% { background-color: rgba(232, 87, 42, 0.2); }
+}
+
+.status {
+  font-weight: 600;
+}
+
+.hint {
+  max-width: 360px;
+  text-align: right;
+}
+
+.error-banner {
+  background-color: #fee2e2;
+  border-bottom: 1px solid #fecaca;
+  padding: 8px 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #b91c1c;
+  font-size: 14px;
+  animation: slide-down 0.3s ease-out;
+}
+
+.error-text {
+  flex: 1;
+}
+
+.close-error {
+  background: transparent;
+  border: none;
+  color: #b91c1c;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0 4px;
+  line-height: 1;
+}
+
+@keyframes slide-down {
+  from { transform: translateY(-100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@media (max-width: 720px) {
+  .app {
+    width: 96vw;
+    margin: 1.5vh auto;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hint {
+    text-align: left;
+  }
+}
